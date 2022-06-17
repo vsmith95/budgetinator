@@ -16,13 +16,13 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(MONGODB_URI || "mongodb://localhost/budgetinator", {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useUnifiedTopology: true
 });
 
 // routes
-app.use(require("./routes/api.js"));
+app.use(require("./routes/api.js")); 
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
